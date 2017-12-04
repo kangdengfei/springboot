@@ -1,7 +1,9 @@
 package com.kdf.control;
 
 import com.kdf.entity.Book;
+import com.kdf.entity.Result;
 import com.kdf.service.BookService;
+import com.kdf.util.ResultUtil;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,13 +27,13 @@ public class BookController {
     BookService service;
 
     @RequestMapping(value = "/books",method = RequestMethod.GET)
-    List<Book> getBooks() {
-        return service.getBooks();
+    Result getBooks() {
+        return ResultUtil.success(service.getBooks());
     }
 
     @RequestMapping(value ="/book/{id}",method = RequestMethod.GET)
-    Book getBook(@PathVariable(name = "id")int id) {
-        return service.getBook(id);
+    Result getBook(@PathVariable(name = "id")int id) {
+        return ResultUtil.success(service.getBook(id));
     }
 
     @RequestMapping("/insert")
